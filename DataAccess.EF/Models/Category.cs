@@ -1,4 +1,4 @@
-﻿namespace Shop.Models;
+﻿namespace DataAccess.EF.Models;
 
 public class Category
 {

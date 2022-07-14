@@ -1,5 +1,5 @@
+using DataAccess.EF.DataAccess;
 using Microsoft.EntityFrameworkCore;
-using Shop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +7,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<CategoryContext>(opt =>
-    opt.UseInMemoryDatabase("Category"));
+builder.Services.AddDbContext<CategoryContext>(opt => opt.UseInMemoryDatabase("Category"));
 
 var app = builder.Build();
 

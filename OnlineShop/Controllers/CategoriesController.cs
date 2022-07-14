@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.EF;
+using DataAccess.EF.DataAccess;
+using DataAccess.EF.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shop.Models;
 
-namespace Shop.Controllers
+namespace OnlineShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -13,6 +15,7 @@ namespace Shop.Controllers
         public CategoriesController(CategoryContext context)
         {
             _context = context;
+            new InitialData().Create(_context);
         }
 
         [HttpGet]
@@ -101,7 +104,7 @@ namespace Shop.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
-        { 
+        {
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetCategory", new { id = category.Id }, category);
